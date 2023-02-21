@@ -4,6 +4,7 @@ import './Main.scss';
 
 function Main() {
   const [id, setId] = useState([]);
+  const [scroll, setScroll] = useState();
   useEffect(e => {
     let data = ["https://youtu.be/V6TEcoNUmc8",
       "https://youtu.be/7goHyFzym2I",
@@ -12,7 +13,6 @@ function Main() {
       'https://youtu.be/BG3A1P4Zmt4',
       'https://youtu.be/N04Dyh8eNIk',
       'https://youtu.be/BUfCW_cmCNQ',
-
     ];
     for (let i = 0; i < data.length; i++) {
       data[i] = data[i].slice(-11);
@@ -27,11 +27,34 @@ function Main() {
     </div>
     <div className="Updated">
       <h3>최근 소식</h3>
-      <div className="contents">
+      <div className="movebuttons">
+        <button onClick={e => {
+          if (scroll > 500) {
+            setScroll(e => e - 500);
+            document.querySelector('.contents').scrollLeft = scroll - 500;
+          }
+          else {
+            setScroll(0);
+            document.querySelector('.contents').scrollLeft = 0;
+          }
+        }}>←</button>
+        <button onClick={e => {
+          if (scroll + 500 < document.querySelector('.contents').scrollHeight) {
+            setScroll(c => c + 1);
+            document.querySelector('.contents').scrollLeft = scroll + 500;
+          }
+          else {
+            setScroll(document.querySelector('.contents').scrollHeight);
+            document.querySelector('.contents').scrollLeft = document.querySelector('.contents').scrollHeight;
+          }
+        }}
+        >→</button>
+      </div>
+      <div className="contents" onScroll={e => setScroll(e.target.scrollLeft)}>
         {id.map((id, n) => <Box key={n} id={id} n={n} />)}
       </div>
     </div>
-  </div>;
+  </div >;
 }
 
 function Box({ id, n }) {

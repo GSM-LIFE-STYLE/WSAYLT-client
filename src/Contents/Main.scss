@@ -15,6 +15,35 @@
     margin-left: 50px;
     margin-bottom: 100px;
 
+    .movebuttons {
+      margin-top: -40px;
+      margin-bottom: 40px;
+      position: relative;
+      right: 80px;
+      text-align: right;
+
+      button {
+        margin-left: 20px;
+        background-color: #4e4e4e;
+        font-weight: bolder;
+        font-size: 20px;
+        height: 50px;
+        width: 50px;
+        border-radius: 1200px;
+        color: white;
+
+        &:hover {
+          background-color: #fdfdfd;
+          color: #121212;
+        }
+
+        &:active {
+          background-color: darken(#fdfdfd, 5%);
+          color: #121212;
+        }
+      }
+    }
+
     .contents {
       display: flex;
       overflow-x: scroll;
