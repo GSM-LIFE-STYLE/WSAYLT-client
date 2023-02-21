@@ -11,8 +11,8 @@ function Signup() {
   return <div className="Signup">
     <h1><b>지루한 일상,<br /> 새로운 노래로<br /> 기분전환 해봐요.</b></h1>
     <div>
-      <input className={`nickname ${(nick !== '') && 'status'}`} onChange={e => setNick(e.target.value)} placeholder="닉네임을 입력해주세요."></input><br />
-      <input className={`pw ${(pw !== '') && 'status'}`} onChange={(e) => setPw(e.target.value)} placeholder="비밀번호를 입력해주세요." type={visible1 && 'password'}></input>
+      <input className={`nickname ${nick && 'status'}`} onChange={e => setNick(e.target.value)} placeholder="닉네임을 입력해주세요." /><br />
+      <input className={`pw ${pw && 'status'}`} onChange={e => setPw(e.target.value)} placeholder="비밀번호를 입력해주세요." type={(visible1 && 'password').toString()} />
       <div className="b1" onClick={() => setVisible1(e => !e)}>
         {!visible1 ? <svg width={'20px'} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
@@ -23,7 +23,7 @@ function Signup() {
           </svg>
         }
       </div>
-      <div className="b2" onClick={() => setVisible2(e => !e)}>
+      <div className="b2" onClick={e => setVisible2(e => !e)}>
         {!visible2 ? <svg width={'20px'} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
           <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -33,18 +33,11 @@ function Signup() {
           </svg>
         }
       </div>
-      <input className={`repw ${pwinco && 'incorrect'} ${(repw !== '') && 'status'}`} onChange={e => setRepw(e.target.value)} placeholder="비밀번호를 다시 입력해주세요." type={visible2 && 'password'}></input>
+      <input className={`repw ${pwinco && 'incorrect'} ${repw && 'status'}`} onChange={e => setRepw(e.target.value)} placeholder="비밀번호를 다시 입력해주세요." type={(visible2 && 'password').toString()} />
       {pwinco && <span style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</span>}
-      <button onClick={() => {
-        if (pw !== repw) {
-          setPwinco(true);
-        }
-        else {
-          setPwinco(false);
-        }
-      }} className='check'>확인</button>
+      <button onClick={e => pw === repw ? setPwinco(false) : setPwinco(true)} className='check'>확인</button>
     </div>
-  </div>;
+  </div >;
 }
 
 export default Signup;
