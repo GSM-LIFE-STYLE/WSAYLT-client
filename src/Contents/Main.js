@@ -4,7 +4,7 @@ import './Main.scss';
 
 function Main() {
   const [id, setId] = useState([]);
-  const [scroll, setScroll] = useState();
+  const [scroll, setScroll] = useState(0);
   const movewidth = 700;
   const cts = document.querySelector('.contents');
   useEffect(e => {
@@ -34,18 +34,20 @@ function Main() {
         <div className="img" />
         <span>LOGO</span>
       </div>
-      <div className="Nav">
-        <Link to='/main'><div className="gap">홈</div></Link>
-        <Link to='/write'><div className="gap">글쓰기</div></Link>
-        <Link to='/mypage'><div className="gap">마이페이지</div></Link>
-      </div>
-      <div className="Login">
-        <Link to='/login'><span>로그인</span></Link>
-        <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-        <Link to='/signup'><span>회원가입</span></Link>
+      <div className="inlogo">
+        <div className="Nav">
+          <Link to='/main'>홈</Link><div className="gap" />
+          <Link to='/write'>글쓰기</Link><div className="gap" />
+          <Link to='/mypage'>마이페이지</Link>
+        </div>
+        <div className="Login">
+          <Link to='/login'><span>로그인</span></Link>
+          <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+          <Link to='/signup'><span>회원가입</span></Link>
+        </div>
       </div>
     </div>
-    <div className="Emptybox">
+    <div className="imgbox">
 
     </div>
     <div className="Updated">
@@ -73,8 +75,10 @@ function Main() {
         }}
         >→</button>
       </div>
-      <div className="contents" onScroll={e => setScroll(e.target.scrollLeft)}>
-        {id.map((id, n) => <Box key={n} id={id} n={n} />)}
+      <div className="contwrap">
+        <div className="contents" onScroll={e => setScroll(e.target.scrollLeft)}>
+          {id.map((id, n) => <Box key={n} id={id} n={n} />)}
+        </div>
       </div>
     </div>
   </div >;
@@ -95,7 +99,7 @@ function Box({ id, n }) {
   return <div className={`box ${n + 1}`} onClick={() => { window.open(`http://youtu.be/${id}`) }} title={data.title + ' 듣기'}>
     <div className="text">
       <h2>{('0' + (n + 1).toString()).toString().slice(-2)}.</h2>
-      <p>&nbsp;<b>{data.title}</b></p>
+      <p>&nbsp;<b>{data.title.length > 18 ? data.title.slice(0, 18) + '...' : data.title}</b></p>
       <p>&nbsp;<b>{data.author_name}</b></p>
     </div>
     <div className="img">
