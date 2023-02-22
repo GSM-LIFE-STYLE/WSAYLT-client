@@ -5,6 +5,8 @@ import './Main.scss';
 function Main() {
   const [id, setId] = useState([]);
   const [scroll, setScroll] = useState();
+  const movewidth = 700;
+  const cts = document.querySelector('.contents');
   useEffect(e => {
     let data = ["https://youtu.be/V6TEcoNUmc8",
       "https://youtu.be/7goHyFzym2I",
@@ -13,6 +15,13 @@ function Main() {
       'https://youtu.be/BG3A1P4Zmt4',
       'https://youtu.be/N04Dyh8eNIk',
       'https://youtu.be/BUfCW_cmCNQ',
+      'https://youtu.be/jhOVibLEDhA',
+      'https://youtu.be/i0p1bmr0EmE',
+      'https://youtu.be/A1tZgPAcpjE',
+      'https://www.youtube.com/watch?v=PEnJbjBuxnw',
+      'https://youtu.be/EtiPbWzUY9o',
+      'https://youtu.be/rMG1YtxHLB8',
+      'https://youtu.be/Amq-qlqbjYA',
     ];
     for (let i = 0; i < data.length; i++) {
       data[i] = data[i].slice(-11);
@@ -20,8 +29,22 @@ function Main() {
     setId(data);
   }, []);
   return <div className="main">
-    <Link to='/login'><button>Log in</button></Link>
-    <Link to='/signup'><button>Sign Up</button></Link>
+    <div className="header">
+      <div className="Logo">
+        <div className="img" />
+        <span>LOGO</span>
+      </div>
+      <div className="Nav">
+        <Link to='/main'><div className="gap">홈</div></Link>
+        <Link to='/write'><div className="gap">글쓰기</div></Link>
+        <Link to='/mypage'><div className="gap">마이페이지</div></Link>
+      </div>
+      <div className="Login">
+        <Link to='/login'><span>로그인</span></Link>
+        <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <Link to='/signup'><span>회원가입</span></Link>
+      </div>
+    </div>
     <div className="Emptybox">
 
     </div>
@@ -29,23 +52,23 @@ function Main() {
       <h3>최근 소식</h3>
       <div className="movebuttons">
         <button onClick={e => {
-          if (scroll > 500) {
+          if (scroll > movewidth) {
             setScroll(e => e - 500);
-            document.querySelector('.contents').scrollLeft = scroll - 500;
+            cts.scrollLeft = scroll - movewidth;
           }
           else {
             setScroll(0);
-            document.querySelector('.contents').scrollLeft = 0;
+            cts.scrollLeft = 0;
           }
         }}>←</button>
         <button onClick={e => {
-          if (scroll + 500 < document.querySelector('.contents').scrollHeight) {
+          if (scroll < cts.scrollWidth + movewidth) {
             setScroll(c => c + 1);
-            document.querySelector('.contents').scrollLeft = scroll + 500;
+            cts.scrollLeft = scroll + movewidth;
           }
           else {
-            setScroll(document.querySelector('.contents').scrollHeight);
-            document.querySelector('.contents').scrollLeft = document.querySelector('.contents').scrollHeight;
+            setScroll(cts.scrollWidth);
+            cts.scrollLeft = cts.scrollWidth;
           }
         }}
         >→</button>
@@ -71,7 +94,7 @@ function Box({ id, n }) {
   }
   return <div className={`box ${n + 1}`} onClick={() => { window.open(`http://youtu.be/${id}`) }} title={data.title + ' 듣기'}>
     <div className="text">
-      <h2>{n + 1}.</h2>
+      <h2>{('0' + (n + 1).toString()).toString().slice(-2)}.</h2>
       <p>&nbsp;<b>{data.title}</b></p>
       <p>&nbsp;<b>{data.author_name}</b></p>
     </div>

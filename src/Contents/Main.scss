@@ -7,8 +7,62 @@
   background-color: #121212;
   color: #fdfdfd;
 
+  .header {
+    align-items: center;
+    margin-top: 40px;
+    background-color: none;
+    height: 30px;
+    width: 100%;
+    display: flex;
+
+    a {
+      text-decoration-line: none;
+      color: #fdfdfd;
+    }
+
+    .Logo {
+      margin-left: 50px;
+      display: flex;
+      align-items: center;
+
+      .img {
+        background-color: #fdfdfd;
+        width: 70px;
+        height: 70px;
+      }
+
+      span {
+        margin-left: 10px;
+        font-size: 30px;
+      }
+    }
+
+    .Nav {
+      height: 20px;
+      align-items: center;
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+
+      .gap {
+        margin: auto;
+        text-align: center;
+        width: 120px;
+      }
+    }
+
+    .Login {
+      height: 20px;
+      position: relative;
+      margin-right: 80px;
+      right: 0px;
+    }
+  }
+
   .Emptybox {
-    height: 500px;
+    margin-top: -70px;
+    height: 650px;
+    background: linear-gradient(lightgray, #121212);
   }
 
   .Updated {
