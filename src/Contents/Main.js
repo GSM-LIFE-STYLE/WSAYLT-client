@@ -52,6 +52,11 @@ function Main() {
     </div>
     <div className="Updated">
       <h3>최근 소식</h3>
+      <div className="contwrap">
+        <div className="contents" onScroll={e => setScroll(e.target.scrollLeft)}>
+          {id.map((id, n) => <Box key={n} id={id} n={n} />)}
+        </div>
+      </div>
       <div className="movebuttons">
         <button onClick={e => {
           if (scroll > movewidth) {
@@ -75,11 +80,6 @@ function Main() {
         }}
         >→</button>
       </div>
-      <div className="contwrap">
-        <div className="contents" onScroll={e => setScroll(e.target.scrollLeft)}>
-          {id.map((id, n) => <Box key={n} id={id} n={n} />)}
-        </div>
-      </div>
     </div>
   </div >;
 }
@@ -99,7 +99,7 @@ function Box({ id, n }) {
   return <div className={`box ${n + 1}`} onClick={() => { window.open(`http://youtu.be/${id}`) }} title={data.title + ' 듣기'}>
     <div className="text">
       <h2>{('0' + (n + 1).toString()).toString().slice(-2)}.</h2>
-      <p>&nbsp;<b>{data.title.length > 18 ? data.title.slice(0, 18) + '...' : data.title}</b></p>
+      <p>&nbsp;<b>{(data.title)}</b></p>
       <p>&nbsp;<b>{data.author_name}</b></p>
     </div>
     <div className="img">

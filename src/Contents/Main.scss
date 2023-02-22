@@ -94,14 +94,24 @@
   }
 
   .Updated {
+    @media(max-width:480px) {
+      margin-left: 10%;
+    }
+
     margin-left: 50px;
     margin-bottom: 100px;
     overflow-x: hidden;
 
     .movebuttons {
-      margin-top: -40px;
-      margin-bottom: 40px;
-      position: relative;
+      @media(max-width:480px) {
+        margin-top: 30px;
+        right: 10%;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      margin-top: -480px;
+      position: absolute;
       right: 80px;
       text-align: right;
 
@@ -132,6 +142,7 @@
         position: relative;
         display: flex;
         overflow: auto;
+        margin-top: 40px;
 
         &::-webkit-scrollbar {
           display: none;
